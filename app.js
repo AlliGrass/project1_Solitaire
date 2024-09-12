@@ -1,12 +1,11 @@
 
-let cardStacks = []; // Will hold the seven stacks and remaining cards
-let rowStacks = [];  // Represents each row of the solitaire layout
+let cardStacks = [];
+let rowStacks = []; 
 
-// Define suits and values
-const suits = ['H', 'D', 'C', 'S']; // Hearts, Diamonds, Clubs, Spades
-const values = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13]; // 1 = Ace, 11 = Jack, 12 = Queen, 13 = King
 
-// Create a deck of 52 unique cards
+const suits = ['H', 'D', 'C', 'S']; 
+const values = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13];
+
 function createDeck() {
     let deck = [];
         suits.forEach(suit => {
@@ -18,39 +17,34 @@ function createDeck() {
 }
 
 
-// Shuffles the deck without creating duplicates
 function cardRandomiserSort() {
-    let sortDeck = createDeck(); // Create a copy of the original deck
-    let newDeck = []; // Initialize a new array to store shuffled cards
-    // Shuffle using a random index until all cards are used
+    let sortDeck = createDeck(); 
+    let newDeck = []; 
     while (sortDeck.length !== 0) {
-        let randomIndex = Math.floor(Math.random() * sortDeck.length); // Generate random index
-        newDeck.push(sortDeck[randomIndex]); // Add random card to newDeck
-        sortDeck.splice(randomIndex, 1); // Remove card from sortDeck
+        let randomIndex = Math.floor(Math.random() * sortDeck.length); 
+        newDeck.push(sortDeck[randomIndex]); 
+        sortDeck.splice(randomIndex, 1); 
     }
-    return newDeck; // Return the shuffled deck
+    return newDeck; 
 }
 
 
 function initialiseCards() {
-    let workingDeck = cardRandomiserSort(); // Get shuffled deck
-    // Create 7 stacks with increasing number of cards (1 to 7)
+    let workingDeck = cardRandomiserSort();
     for (let i = 1; i <= 7; i++) {
         let currentStack = [];
         
-        // Add 'i' cards to the current stack
+   
         for (let j = 0; j < i; j++) {
-            currentStack.push(workingDeck[0]); // Add card from workingDeck
-            workingDeck.splice(0, 1); // Remove the card from the deck
+            currentStack.push(workingDeck[0]);
+            workingDeck.splice(0, 1);
         }
         
-        cardStacks.push(currentStack); // Add current stack to cardStacks
+        cardStacks.push(currentStack)
     }
 
-    // Add the remaining cards to cardStacks[0] as the remainder deck
-    cardStacks.unshift(workingDeck); // Remaining cards go to cardStacks[0] (remainder pile)
+    cardStacks.unshift(workingDeck); 
     
-    // Create an empty array for the flipped pile (stack at the end of cardStacks)
     let flippedStack = [];
     cardStacks.push(flippedStack);
 
@@ -448,44 +442,7 @@ var cardList;
 
 
 
-// final-rowStacks.forEach (ul => {
-    // ul.addEventListener(
-    //     "dragenter", (event) => {
-    //         // comparisons to allow card into stacks
-    //     }
-    // )
 
-    // ul.addEventListener(
-    //     "dragover",
-    //     (event) => {
-    //         if(finalCardCompatible) {
-    //             event.preventDefault();
-    //         }
-    //     }
-    // )
-
-
-
-    // ul.addEventListener("drop", (event) => {
-    //     event.preventDefault();
-    //     shortenCards(ul)   
-
-
-
-    //     ul.appendChild(currentDraggingCard);
-    //     // change stacklist amounts Initialisation
-    //     const id = event.dataTransfer.getData('text/plain');
-    //     const parentId = event.dataTransfer.getData('parentId');
-    //     const draggableElement = document.getElementById(id);
-    //     const rowStack = document.getElementById(parentId);
-
-    //     revealNewCard(rowStack);
-
-
-
-    //     // function to check ul and show last card
-    //   });
-// })
 
 
 
@@ -577,10 +534,7 @@ dropZoneStacks.forEach (ul =>{
 
 
         ul.appendChild(currentDraggingCard);
-        // change stacklist amounts Initialisation
-        const id = event.dataTransfer.getData('text/plain');
         const parentId = event.dataTransfer.getData('parentId');
-        const draggableElement = document.getElementById(id);
         const rowStack = document.getElementById(parentId);
 
         revealNewCard(rowStack);
@@ -592,7 +546,31 @@ dropZoneStacks.forEach (ul =>{
 })
 
 
+final-rowStacks.forEach (finalStack => {
+    finalStack.addEventListener(
+        "dragenter", (event) => {
 
+            // comparisons to allow card into stacks
+        }
+    )
+
+    finalStack.addEventListener(
+        "dragover",
+        (event) => {
+            if(finalCardCompatible) {
+                event.preventDefault();
+            }
+        }
+    )
+
+
+
+    ul.addEventListener("drop", (event) => {
+        event.preventDefault();
+
+        // function to check ul and show last card
+      });
+})
 
 
 
