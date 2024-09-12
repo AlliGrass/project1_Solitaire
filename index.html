@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Solitaire</title>
+</head>
+<body>
+    <!-- body background -->
+    <main> 
+        <!-- greyed out / opaque -->
+        <article>
+            <!-- working space -->
+            <section class="final-collection-space">
+                <!-- collection secion -->
+                <div class="final-card-stacks">
+                    <!-- final card stacks -->
+                    
+                    <ul class="final-stack">
+                        <!-- suit -->
+                        <li class="card placeholder-card">&heartsuit;</li>
+                        
+                    </ul>
+                    <ul class="final-stack">
+                        <!-- suit -->
+                        <li class="card placeholder-card">&spadesuit;</li>
+                    </ul>
+                    <ul class="final-stack">
+                        <!-- suit -->
+                        <li class="card placeholder-card">&diamondsuit;</li>
+                    </ul>
+                    <ul class="final-stack">
+                        <!-- suit -->
+                        <li class="card placeholder-card">&clubsuit;</li>
+                    </ul>
+                </div>
+                <div class="remainder-collection-space">
+                    <!-- remainder card stacks -->
+                    <ul id="flipped-stack">
+                        <li class="card placeholder-card top-flipped-card">Place Card Here</li>
+                    </ul>
+                    <ul id="non-flipped-stack">
+                        <li class="card placeholder-card">Place Card Here</li>
+                    </ul>
+
+                </div>
+            </section>
+
+            <section class="working-card-space">
+                <!-- working card stacks -->
+                <ul id="stack-row-1" class="dropZoneStack">
+                    <li class="placeholder-card">
+                        <div class="top-card">
+                            <p class="hidden-suit-value">E</p>
+                            <p class="hidden-num-value">14</p>
+                        </div>
+                    </li>
+                </ul>
+                <ul id="stack-row-2" class="dropZoneStack"></ul>
+                <ul id="stack-row-3" class="dropZoneStack"></ul>
+                <ul id="stack-row-4" class="dropZoneStack"></ul>
+                <ul id="stack-row-5" class="dropZoneStack"></ul>
+                <ul id="stack-row-6" class="dropZoneStack"></ul>
+                <ul id="stack-row-7" class="dropZoneStack"></ul>
+            </section>
+
+
+            <!-- <h2>Testing Area</h2>
+            <section class="test-area">
+
+
+
+                <ul class="dropZoneStack">
+                    <li class="shortened-card  draggable">
+                        <div class="top-card">
+                            <p class="card-suit">A</p>
+                            <p class="card-num">1</p>
+                        </div>
+                        <p class="card-info">&heartsuit;</p>
+                        <div class="bottom-card">
+                            <p clas="card-num">1</p>
+                            <p class="card-suit">A</p>
+                        </div>
+                    </li>
+                    <li class="card card-suit-red draggable">
+                        <div class="top-card">
+                            <p class="card-suit">H</p>
+                            <p class="card-num">1</p>
+                        </div>
+                        <p id="card-info">&heartsuit;</p>
+                        <div class="bottom-card">
+                            <p class="card-num">1</p>
+                            <p class="card-suit">H</p>
+                        </div>
+                    </li>
+
+                </ul>
+
+
+                <ul class="dropZoneStack">
+                    <li class="card draggable">
+                        <div class="top-card">
+                            <p class="card-suit">S</p>
+                            <p class="card-num">2</p>
+                        </div>
+                        <p id="card-info">&diamondsuit;</p>
+                        <div class="bottom-card ">
+                            <p class="card-num">2</p>
+                            <p class="card-suit">S</p>
+                        </div>
+                    </li>
+                </ul>
+
+
+
+
+
+
+
+
+
+            </section> -->
+        </article>
+
+    </main>
+
+    <script src="app.js"></script>
+</body>
+</html>

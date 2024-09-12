@@ -1,1 +1,1 @@
-# project1_Solitaire
+# Solitaire
