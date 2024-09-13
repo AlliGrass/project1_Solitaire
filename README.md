@@ -129,4 +129,4 @@ To further improve the experience, implementing a 'play again' button within the
 
 Several features could also be implemented such as a timer to display.
 
-The most impactful improvement would be to refine the CSS of the page so that it looks cleaner and thematic.
+The most impactful improvement would be to refine the CSS of the page so that it looks cleaner and thematic. This would also make the page viewable on smaller screens.
