@@ -11,37 +11,73 @@
     <main> 
         <!-- greyed out / opaque -->
         <article>
+
+
+            <section class="winning-section">
+                <div class="winning-box">
+                    <button class="close-win-popup-btn">&times;</button>
+                    <div class="top-winning-box">
+                        <h2 class="winning-congratulation-message">Congratulations</h2>
+                        <p>Would you like to play again?</p>
+
+                        <!-- <button class="play-again-btn">Play Again</button> -->
+
+                    </div>
+
+                    
+                </div>
+                <div class="winning-background-overlay"></div>
+            </section>
+
+
+
             <!-- working space -->
             <section class="final-collection-space">
                 <!-- collection secion -->
                 <div class="final-card-stacks">
                     <!-- final card stacks -->
                     
-                    <ul class="final-stack">
+                    <ul class="dropZoneStack">
                         <!-- suit -->
-                        <li class="card placeholder-card">&heartsuit;</li>
+                        <li class="card placeholder-card">&heartsuit;
+                            <p class="hidden-suit-value">H</p>
+                            <p class="hidden-num-value">0</p>
+                            <p class="hidden-stack-value">finalCollection</p>
+                        </li>
                         
                     </ul>
-                    <ul class="final-stack">
+                    <ul class="dropZoneStack">
                         <!-- suit -->
-                        <li class="card placeholder-card">&spadesuit;</li>
+                        <li class="card placeholder-card ">&spadesuit;
+                            <p class="hidden-suit-value">S</p>
+                            <p class="hidden-num-value">0</p>
+                            <p class="hidden-stack-value">finalCollection</p>
+                        </li>
                     </ul>
-                    <ul class="final-stack">
+                    <ul class="dropZoneStack">
                         <!-- suit -->
-                        <li class="card placeholder-card">&diamondsuit;</li>
+                        <li class="card placeholder-card">&diamondsuit;
+                            <p class="hidden-suit-value">D</p>
+                            <p class="hidden-num-value">0</p>
+                            <p class="hidden-stack-value">finalCollection</p>
+                        </li>
                     </ul>
-                    <ul class="final-stack">
+                    <ul class="dropZoneStack">
                         <!-- suit -->
-                        <li class="card placeholder-card">&clubsuit;</li>
+                        <li class="card placeholder-card">&clubsuit;
+                            <p class="hidden-suit-value">C</p>
+                            <p class="hidden-num-value">0</p>
+                            <p class="hidden-stack-value">finalCollection</p>
+                        </li>
                     </ul>
                 </div>
                 <div class="remainder-collection-space">
                     <!-- remainder card stacks -->
                     <ul id="flipped-stack">
-                        <li class="card placeholder-card top-flipped-card">Place Card Here</li>
+                        <li class="card placeholder-card top-flipped-card">No Card  </li>
                     </ul>
                     <ul id="non-flipped-stack">
-                        <li class="card placeholder-card">Place Card Here</li>
+                        <li class="card placeholder-card"></li>
                     </ul>
 
                 </div>
@@ -50,19 +86,68 @@
             <section class="working-card-space">
                 <!-- working card stacks -->
                 <ul id="stack-row-1" class="dropZoneStack">
-                    <li class="placeholder-card">
+                    <li class="placeholder-card working-template">
                         <div class="top-card">
                             <p class="hidden-suit-value">E</p>
                             <p class="hidden-num-value">14</p>
+                            <p class="hidden-stack-value">workingCollection</p>
                         </div>
                     </li>
                 </ul>
-                <ul id="stack-row-2" class="dropZoneStack"></ul>
-                <ul id="stack-row-3" class="dropZoneStack"></ul>
-                <ul id="stack-row-4" class="dropZoneStack"></ul>
-                <ul id="stack-row-5" class="dropZoneStack"></ul>
-                <ul id="stack-row-6" class="dropZoneStack"></ul>
-                <ul id="stack-row-7" class="dropZoneStack"></ul>
+                <ul id="stack-row-2" class="dropZoneStack">
+                    <li class="placeholder-card working-template">
+                        <div class="top-card">
+                            <p class="hidden-suit-value">E</p>
+                            <p class="hidden-num-value">14</p>
+                            <p class="hidden-stack-value">workingCollection</p>
+                        </div>
+                    </li>
+                </ul>
+                <ul id="stack-row-3" class="dropZoneStack">
+                    <li class="placeholder-card working-template">
+                        <div class="top-card">
+                            <p class="hidden-suit-value">E</p>
+                            <p class="hidden-num-value">14</p>
+                            <p class="hidden-stack-value">workingCollection</p>
+                        </div>
+                    </li>
+                </ul>
+                <ul id="stack-row-4" class="dropZoneStack">
+                    <li class="placeholder-card working-template">
+                        <div class="top-card">
+                            <p class="hidden-suit-value">E</p>
+                            <p class="hidden-num-value">14</p>
+                            <p class="hidden-stack-value">workingCollection</p>
+                        </div>
+                    </li>
+                </ul>
+                <ul id="stack-row-5" class="dropZoneStack">
+                    <li class="placeholder-card working-template">
+                        <div class="top-card">
+                            <p class="hidden-suit-value">E</p>
+                            <p class="hidden-num-value">14</p>
+                            <p class="hidden-stack-value">workingCollection</p>
+                        </div>
+                    </li>
+                </ul>
+                <ul id="stack-row-6" class="dropZoneStack">
+                    <li class="placeholder-card working-template">
+                        <div class="top-card">
+                            <p class="hidden-suit-value">E</p>
+                            <p class="hidden-num-value">14</p>
+                            <p class="hidden-stack-value">workingCollection</p>
+                        </div>
+                    </li>
+                </ul>
+                <ul id="stack-row-7" class="dropZoneStack">
+                    <li class="placeholder-card working-template">
+                        <div class="top-card">
+                            <p class="hidden-suit-value">E</p>
+                            <p class="hidden-num-value">14</p>
+                            <p class="hidden-stack-value">workingCollection</p>
+                        </div>
+                    </li>
+                </ul>
             </section>
 
 

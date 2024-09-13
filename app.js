@@ -65,6 +65,13 @@ function createCard(card) {
     hiddenNumValue.classList.add("hidden-num-value");
     hiddenNumValue.innerText = cardNumberValue;
 
+    let hiddenstackValue = document.createElement("p");
+    hiddenstackValue.classList.add("hidden-stack-value");
+    hiddenstackValue.innerText = "workingCollection";
+
+
+
+
     switch(cardSuitValue) {
         case "H":
             cardSuitValue = "&heartsuit;";
@@ -137,6 +144,7 @@ function createCard(card) {
     newCard.appendChild(cardImageP);
     newCard.appendChild(hiddenSuitValue);
     newCard.appendChild(hiddenNumValue);
+    newCard.appendChild(hiddenstackValue);
     newCard.appendChild(bottomCardDiv);
 
 
@@ -162,7 +170,7 @@ function makeRemainderCardVisible(remainderCardLi) {
     remainderCardLi[remainderCardLi.length-1].classList.add("draggable");
     remainderCardLi[remainderCardLi.length-1].querySelector(".hidden-suit-value").style.display = "none";
     remainderCardLi[remainderCardLi.length-1].querySelector(".hidden-num-value").style.display = "none";
-
+    remainderCardLi[remainderCardLi.length-1].querySelector(".hidden-stack-value").style.display = "none";
 }
 
 
@@ -186,7 +194,6 @@ function placeCardsOnTable() {
     let currentStack = cardStacks[0];
 
     let remainderCardStack = document.getElementById("non-flipped-stack");
-    console.log(currentStack)
     currentStack.forEach(card => {
 
         let newCard = createCard(card);
@@ -222,6 +229,7 @@ function flipRemainderCard(remainderCardHiddenLi, remainderCardShownLi, remainde
     remainderCardShownLi[remainderCardShownLi.length-1].classList.add("draggable");
     remainderCardShownLi[remainderCardShownLi.length-1].querySelector(".hidden-suit-value").style.display = "none";
     remainderCardShownLi[remainderCardShownLi.length-1].querySelector(".hidden-num-value").style.display = "none";
+    remainderCardShownLi[remainderCardShownLi.length-1].querySelector(".hidden-stack-value").style.display = "none";
 }
 
 function resetRemainderCards(remainderCardHiddenLi, remainderCardShownLi, remainderCardShownStack, remainderCardHiddenStack) {
@@ -230,16 +238,6 @@ function resetRemainderCards(remainderCardHiddenLi, remainderCardShownLi, remain
     remainderCardHiddenStack.appendChild(remainderCardShownLi[remainderCardShownLi.length-1]);
 }
 
-function checkFlippedRemainderCards() {
-    //check amount in flipped stack array, if 0, return to placeholder. if more than one, have last card be visible
-    // let remainderFlippedStack = cardStacks[cardStacks.length-1];
-
-    // if (remainderFlippedStack.length == 1) {
-    //     remainderFlippedStack[remainderFlippedStack.length-1].classList.add("top-flipped-card");
-    // }
-
-
-}
 
 
 function handleGetNewRemainderCard() {
@@ -277,70 +275,12 @@ function handleGetNewRemainderCard() {
 
 
 
-        // next in list 
-
-
-
-
-
-
-
-    // }
-        //  else if (remainderCardHiddenLi.length == 1) {
-
-    //     while (remainderFlippedStack.length !== 0) {
-            
-    //         remainderCardHiddenStack.appendChild(remainderCardShownLi[remainderCardShownLi.length-1]);
-    //     } // transfer cards from array to array
-    //     remainderCardShownStack.classList.remove("hasCardUnder");
-
-
-    //     remainderCardShownLi[0].classList.add("top-flipped-card");
-
-    //     remainderCardHiddenLi[0].classList.remove("top-remainder-card");
-
-
-    //     remainderCardHiddenLi[remainderCardHiddenLi.length-1].classList.add("top-remainder-card");
-    //     remainderCardHiddenLi[remainderCardHiddenLi.length-1].classList.add("card-back");
-
-
-    // } else {
-
-    //     if (remainderCardHiddenLi.length == 1) {
-    //         remainderCardShownLi[0].classList.remove("top-flipped-card");
-    //     } else {
-    //         remainderCardShownLi[remainderCardShownLi.length-1].classList.remove("top-flipped-card");
-    //     }
-    
-    //     flipRemainderCard(remainderCardHiddenLi, remainderCardShownLi, remainderNonFlippedStack, remainderFlippedStack, remainderCardShownStack);
-    
-    
-    //     if (remainderCardHiddenLi.length = 1) {
-    //         remainderCardHiddenLi[0].classList.remove("card-back");
-    //     }
-
-    // }
-
-
     getNewRemainderCard.removeEventListener("click", handleGetNewRemainderCard)
     getNewRemainderCard = document.querySelector(".top-remainder-card");
     getNewRemainderCard.addEventListener("click", handleGetNewRemainderCard)
 
 
     initialiseDragCards();
-
-
-    // remainderCardLi[remainderCardLi.length-1].classList.remove("top-card");
-
-    
-
-    // remainderFlippedStack.push(remainderCardLi[remainderCardLi.length-1]);
-
-
-
-
-
-
 
 
 
@@ -354,12 +294,11 @@ function handleDragStart(event){
 }
 
 function initialiseDragCards() {
-    let draggableCards = document.querySelectorAll(".draggable"); // need to reinitialise when cards change positions
+    let draggableCards = document.querySelectorAll(".draggable");
 draggableCards.forEach( card => {
     card.draggable = true;
     card.addEventListener("dragstart", handleDragStart);
 })
-// everything above needs to be reinitialised
 }
 
 function shortenCards(ul){
@@ -375,16 +314,86 @@ function shortenCards(ul){
 }
 
 
-function revealNewCard(rowStack) {
-    let cardStack = rowStack.querySelectorAll("li");
-    let workingCard = cardStack[cardStack.length-1];
-    workingCard.classList.remove("shortened-card");
-    workingCard.classList.add("card");
-    workingCard.classList.remove("card-back");
-    workingCard.draggable = true;
-    console.log(cardStack);
+function revealNewCard(rowStack) {    
+    if(rowStack.querySelectorAll("li") !== null) {
+        let cardStack = rowStack.querySelectorAll("li");
+        let workingCard = cardStack[cardStack.length-1];
+        workingCard.classList.remove("shortened-card");
+        workingCard.classList.add("card");
+        workingCard.classList.remove("card-back");
+        workingCard.classList.add("draggable");
+        workingCard.draggable = true;
+    }     
 }
 
+function revealCardUnder() {
+    let flippedStack = document.getElementById("flipped-stack");
+    let cardStack = flippedStack.querySelectorAll("li");
+    let workingCard = cardStack[cardStack.length-1];
+    workingCard.classList.add("top-flipped-card");;
+
+
+}
+
+function placeFinalCard(ul, currentCard) {
+
+    let finalStacks = ul.querySelectorAll("li");
+
+    let previousCard = finalStacks[finalStacks.length-2];
+    previousCard.classList.add("hidden-Card");
+    currentCard.querySelector(".hidden-stack-value").textContent = "finalCollection";
+}
+
+function checkGameWon() {
+    let finalCardStackDiv = document.querySelector(".final-card-stacks");
+    let finalCardStack = finalCardStackDiv.querySelectorAll(".dropZoneStack");
+    let totalFinalisedCards = 0;
+    finalCardStack.forEach( finalStack => {
+        console.log(finalStack)
+        let finalCardList = finalStack.querySelectorAll("li");
+        totalFinalisedCards += finalCardList.length - 1;
+    })
+    console.log(totalFinalisedCards);
+    if (totalFinalisedCards === 52) {
+        winGameChanges()
+    }
+}
+
+
+function winGameChanges() {
+    document.querySelector(".winning-box").style.display = "block";
+    document.querySelector(".winning-background-overlay").style.display = "block";
+
+    let closeBtn = document.querySelector(".close-win-popup-btn");
+    closeBtn.addEventListener("click", closeWinPopUp)
+
+}
+
+function closeWinPopUp() {
+    document.querySelector(".winning-box").style.display = "none";
+    document.querySelector(".winning-background-overlay").style.display = "none";
+}
+
+function handlePlayAgain() {
+    closeWinPopUp()
+
+    let finalCardStackDiv = document.querySelector(".final-card-stacks");
+    console.log(finalCardStackDiv)
+    let finalCardStack = finalCardStackDiv.querySelectorAll(".dropZoneStack");
+
+    finalCardStack.forEach( finalStack => {
+
+        while (finalStack.length !== 1) {
+            finalStack.removeChild();
+        }
+    })
+
+    initialiseCards();
+
+    placeCardsOnTable();
+
+    initialiseDragCards();
+}
 
 
 initialiseCards();
@@ -392,10 +401,6 @@ initialiseCards();
 placeCardsOnTable();
 
 initialiseDragCards();
-
-
-
-
 
 
 
@@ -410,9 +415,9 @@ getNewRemainderCard.addEventListener("click", handleGetNewRemainderCard);
 
 var selectedCardNumValue;
 var selectedCardSuitValue;
-var currentDraggingCard
+var currentDraggingCard;
 
-
+var visibleCards;
 
 
 
@@ -422,29 +427,8 @@ cardsAreCompatible = false;
 
 var cardList;
 
-// affect arrays directly
-
-// row = array
-
-
-
-
-//find row/array/card index
-// comparisons DONE
-// switch in array
-// either also append elements
-// OR recreate row based on array
-// OR remove arrays
-
-
-
-
-
-
-
-
-
-
+let rowStack;
+let parentId;
 
 dropZoneStacks.forEach (ul =>{
 
@@ -453,6 +437,8 @@ dropZoneStacks.forEach (ul =>{
             const parentId = event.target.parentElement.id;
             event.dataTransfer.setData('text/plain', event.target.id);
             event.dataTransfer.setData('parentId', parentId);
+
+
         }
     )
 
@@ -460,58 +446,90 @@ dropZoneStacks.forEach (ul =>{
         "dragenter",
         (event) => { // When applicable, activate drop using following function
           // prevent default to allow drop
-            event.preventDefault();
 
             cardList = ul.querySelectorAll("li");
             card = cardList[cardList.length-1];
 
-
             var targetNum = card.querySelector(".hidden-num-value").innerHTML;
             var targetSuit = card.querySelector(".hidden-suit-value").textContent;
+            var targetStack = card.querySelector(".hidden-stack-value").textContent;
 
 
 
-            switch (selectedCardNumValue){
-                case "K":
-                    selectedCardNumValue = "13";
-                    break;
-                case "Q":
-                    selectedCardNumValue  = "12";
-                    break;
-                case "J":
-                    selectedCardNumValue = "11";
-                    break;
-            }
-            
-            console.log(Number(selectedCardNumValue) === (targetNum - 1));
-            if (Number(selectedCardNumValue) === (targetNum - 1)) { // checked 
+            switch(targetStack) {
+                case "workingCollection":
 
-
-                switch(selectedCardSuitValue) {
-                case "H":
-                case "D":
-                    if(targetSuit === "S" || targetSuit === "C" || targetSuit === "E") {
-
-                        cardsAreCompatible = true;
-                    } else {
-                        cardsAreCompatible = false;
-                    }
-                    break;
-                case "C":
-                case "S":
-                    if(targetSuit === "H" || targetSuit === "D" || targetSuit === "E") {
-                        cardsAreCompatible = true;
-                    } else {
-                        cardsAreCompatible = false;
-                    }
-                    break;
-                default: 
-                    cardsAreCompatible = false;
-                    break;
+                switch (selectedCardNumValue){
+                    case "K":
+                        selectedCardNumValue = "13";
+                        break;
+                    case "Q":
+                        selectedCardNumValue  = "12";
+                        break;
+                    case "J":
+                        selectedCardNumValue = "11";
+                        break;
                 }
-            } else {
-                cardsAreCompatible = false;
+                
+                if (Number(selectedCardNumValue) === (targetNum - 1)) { // checked 
+                    switch(selectedCardSuitValue) {
+                    case "H":
+                    case "D":
+                        if(targetSuit === "S" || targetSuit === "C" || targetSuit === "E") {
+    
+                            cardsAreCompatible = true;
+                        } else {
+                            cardsAreCompatible = false;
+                        }
+                        break;
+                    case "C":
+                    case "S":
+                        if(targetSuit === "H" || targetSuit === "D" || targetSuit === "E") {
+                            cardsAreCompatible = true;
+                        } else {
+                            cardsAreCompatible = false;
+                        }
+                        break;
+                    default: 
+                        cardsAreCompatible = false;
+                        break;
+                    }
+                } else {
+                    cardsAreCompatible = false;
+                }
+
+
+                    break;
+                case "finalCollection":
+                    
+                    switch (selectedCardNumValue){
+                        case "K":
+                            selectedCardNumValue = "13";
+                            break;
+                        case "Q":
+                            selectedCardNumValue  = "12";
+                            break;
+                        case "J":
+                            selectedCardNumValue = "11";
+                            break;
+                    }
+
+                    console.log(Number(targetNum)+ 1);
+                    if (selectedCardSuitValue === targetSuit && Number(selectedCardNumValue) === Number(targetNum) + 1 ) {
+
+                        cardsAreCompatible = true;
+                        
+                    } else {
+                        cardsAreCompatible = false;
+                    }
+
+
+
+                break;
+
             }
+
+            
 
         }
     );
@@ -526,134 +544,62 @@ dropZoneStacks.forEach (ul =>{
     )
 
 
-
+    
     ul.addEventListener("drop", (event) => {
         event.preventDefault();
-        shortenCards(ul)   
+        var targetStack = card.querySelector(".hidden-stack-value").textContent;
+        switch(targetStack) {
+            case "workingCollection":
 
+                parentId = event.dataTransfer.getData('parentId');
+                rowStack = document.getElementById(parentId);
+                shortenCards(ul);
+                if (currentDraggingCard.classList.contains("top-flipped-card")) {
+                    currentDraggingCard.classList.remove("top-flipped-card");
+                    ul.appendChild(currentDraggingCard);
+                    revealCardUnder();
+                } else {
+                    parentId = event.dataTransfer.getData('parentId');
+                    rowStack = document.getElementById(parentId);
 
+                    cardList = Array.from(rowStack.getElementsByTagName("li"));
+                    shortenCards(ul);
 
-        ul.appendChild(currentDraggingCard);
-        const parentId = event.dataTransfer.getData('parentId');
-        const rowStack = document.getElementById(parentId);
+                    let index = cardList.indexOf(currentDraggingCard);
+                    let cardsToMove = cardList.slice(index);
+                    
+                    cardsToMove.forEach(card => {
+                        ul.appendChild(card);
+                    });
 
-        revealNewCard(rowStack);
+                    revealNewCard(rowStack);
+                }
+                  
+                initialiseDragCards();
+            
+                break;
+            case "finalCollection":
 
+                if (currentDraggingCard.classList.contains("top-flipped-card")) {
+                    currentDraggingCard.classList.remove("top-flipped-card");
+                    ul.appendChild(currentDraggingCard);
+                    revealCardUnder();
+                }
+                currentCard = ul.appendChild(currentDraggingCard);
+                placeFinalCard(ul, currentCard)
+                parentId = event.dataTransfer.getData('parentId');
+                rowStack = document.getElementById(parentId);
 
+                revealNewCard(rowStack);
 
-        // function to check ul and show last card
+                // check win
+                checkGameWon();
+                initialiseDragCards();
+                break;
+
+        }
+        
+
       });
 })
 
-
-final-rowStacks.forEach (finalStack => {
-    finalStack.addEventListener(
-        "dragenter", (event) => {
-
-            // comparisons to allow card into stacks
-        }
-    )
-
-    finalStack.addEventListener(
-        "dragover",
-        (event) => {
-            if(finalCardCompatible) {
-                event.preventDefault();
-            }
-        }
-    )
-
-
-
-    ul.addEventListener("drop", (event) => {
-        event.preventDefault();
-
-        // function to check ul and show last card
-      });
-})
-
-
-
-// Solitaire
-
-/*
- 
-inital array of 52, refer to array when sorting cards (create working array for replayability)
-
-sort using random num, remove card from array and update sort random to be the max length of working array
-
-start by assign cards to working stacks that are immediately visible at bottom of screen, sort remainder (also random) within spare stack.
-
-display back of card initially for all cards.
-
-every row of working stacks is object (card value, visiblity boolean) // visibility boolean as class for array(?)
-
-cycle through spare stack one by one, returning to start of deck when object (card value, visiblity boolean) ends
-
-
-
-placeholder card(?) // CANNOT BE MOVED
-
-
-
-
-troubleshooting: check that all arranged cards add up to 52 by checking lengths of arrays together
-
-
-ascending cards check: check suit, then check value is ascending (reject or accept card into array) 
-descending cards check: get first card, check if value and matching suit aligns (reject or accept card array merge)
-
-
-functions :
-
-- card visibility management
-- confirm card can be placed
-    - ascending final cards stacks (4 stack suits)
-    - descending working cards stacks
-
-
-
-Extra: 
-- allow to remove card into working stacks again 
-- allow autocomplete once all cards are revealed
-    - function to check for all cards (within visibility management function)
-        - if class, queryselectorall class and compare to amount in deck 52
-    - display autocomplete button
-
-- shorten card when not on top
-
-*/
-
-
-
-
-
-// Mastermind
-
-/* 
-
-randomise colours, assign them to numbers to be able to effectively random order + effective toggle
-
-toggle through colours when press on button
-
-submit button to enter code submission
-
-evaluate input code. check for each pin in for loop (comparison array for multiples)
-
-display comparison on right side of working space
-
-if input code matches randomised initial code, reveal code at bottom of working space
-
-
-functions: 
-- toggle colours
-- submit code
-    - compare code to initial randomised code
-        - display comparison result
-
-
-
-
-
-
-*/

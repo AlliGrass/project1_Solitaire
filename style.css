@@ -116,7 +116,7 @@ p {
 }
 
 
-#flipped-stack >.top-flipped-card > .card-info{
+#flipped-stack > .top-flipped-card > .card-info{
     display: block;
 }
 
@@ -149,6 +149,71 @@ p {
     visibility: hidden;
 }
 
-.hidden-suit-value, .hidden-num-value {
+.hidden-suit-value, .hidden-num-value, .hidden-stack-value, .hidden-Card{
     display: none;
+}
+
+.working-template {
+    visibility: hidden;
+}
+
+.winning-section {
+    display: contents;
+}
+
+
+.winning-box {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    width: 30%;
+    top: 50%; /* Center vertically */
+    left: 50%; /* Center horizontally */
+    transform: translate(-50%, -50%); /* Adjust for box size */
+    z-index: 1000; /* Ensure it appears on top */
+    background-color: white;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+
+}
+
+.top-winning-box {
+    display: grid;
+    justify-content: center;
+}
+
+.top-winning-box * {
+    margin: 10px;
+}
+
+.winning-background-overlay{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+    z-index: 999; /* Ensure it's behind the popup */
+    display: none;
+}
+
+
+
+.close-win-popup-btn {
+    border: none;
+    background: none;
+    font-size: larger;
+    position: absolute;
+    margin: 15px;
+    top: 0;
+    right: 0;
+}
+
+.close-win-popup-btn:hover {
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 15%;
+}
+
+.play-again-btn {
+    padding: 10px;
 }
