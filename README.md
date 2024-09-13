@@ -9,7 +9,7 @@ This project includes the foundation code for the card game Solitaire with simpl
 The game is fully functional, however, there are a few bugs that, while do not entirely impede on the gameplay, are still prevalent. This include dragging cards only displaying the 'targeted' card even if you are moving multiple of them. The most prevalent is the Play Again button, which doesnt work. This is (Most Likely) due to the fact that the functions purpose is to go through all the cards final collection bay and removes them one by one, however the list to retrieve the cards is not implemented correctly and therefore the cards cant be remove correctly. Furthermore, the general set up of the cards don't seem to be working, potentially due to how the function is being called.
 
 # Development Process
-### Planning
+## Planning
 Initially the choice was between creating Mastermind and Solitaire. This included creating mockups for their page designs and a general layout of the process to creating the project. Ultimately the decision to create Solitaire was based on the fact that it was more appealing, especially as I regularly play Solitaire, as well as having already made Mastermind before. Granted, it was a group assignment made in ARMlite.
 
 ![mockupSolitaire](./images/mockupSolitaire.png)
@@ -87,7 +87,7 @@ functions:
 
 <!-- planning screenshots + plan text -->
 
-
+## Development
 When developing Solitaire the first step was to create the working space to place the cards. Once building initial 'look' of the page, the styling of the page was not touched for the remainder of the time that the project was working on in favour of implementing the core functions of the game.
 
 ![initialPageDesign](./images/screenshot_development1.png)
