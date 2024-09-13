@@ -19,7 +19,7 @@ Initially the choice was between creating Mastermind and Solitaire. This include
 
 When developing Solitaire the first step was to create the working space to place the cards. Once building initial 'look' of the page, the styling of the page was not touched for the remainder of the time that the project was working on in favour of implementing the core functions of the game.
 
-(./images/screenshot_development1.png)
+!(./images/screenshot_development1.png)
 <!-- images of initial page design -->
 
 After the page was setup, creating (That's right, CREATING) the cards and placing them onto the page according was simple enough. This was because after shuffling the cards they were put into sets of arrays that corresponded with the location the stack of cards were supposed to go to. Essentially this meant there was an array like so:
