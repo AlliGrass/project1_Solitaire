@@ -1,4 +1,4 @@
-![image](https://github.com/user-attachments/assets/e7d247b3-5bde-47ff-b49e-8a27b5de369a)# [Solitaire](https://AlliGrass.github.io/project1_Solitaire/)
+# [Solitaire](https://AlliGrass.github.io/project1_Solitaire/)
 
 Here is the Solitaire Project that I spent countless hours working on!
 
