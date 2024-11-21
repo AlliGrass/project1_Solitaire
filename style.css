@@ -15,11 +15,10 @@ main {
 
 article {
     background-color: darkgreen;
-    width: 1600px;
-    height: 900px;
-    margin: 30px auto;
+    width: 80%;
+    height: 800px;
+    margin: 30px;
     border: 2px solid brown;
-    /* 1920 x 1080 */
    
 }
 
