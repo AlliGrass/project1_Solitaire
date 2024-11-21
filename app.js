@@ -1,6 +1,5 @@
 
 let cardStacks = [];
-let rowStacks = []; 
 
 
 const suits = ['H', 'D', 'C', 'S']; 
@@ -29,8 +28,10 @@ function cardRandomiserSort() {
 }
 
 
-function initialiseCards() {
-    let workingDeck = cardRandomiserSort();
+function initialiseCards(cardStacks) {
+    let  workingDeck = []
+    workingDeck = cardRandomiserSort();
+    let flippedStack = [];
     for (let i = 1; i <= 7; i++) {
         let currentStack = [];
         
@@ -45,7 +46,7 @@ function initialiseCards() {
 
     cardStacks.unshift(workingDeck); 
     
-    let flippedStack = [];
+    
     cardStacks.push(flippedStack);
 
 }
@@ -178,13 +179,12 @@ function placeCardsOnTable() {
 
     for (i = 1; i <= 7; i++) {
         let currentStack = cardStacks[i];
-        let placedCardStack;
         let currentStackRow = document.getElementById(`stack-row-${i}`);
 
         currentStack.forEach(card => {
             currentStackRow.appendChild(createCard(card));
         });
-        placedCardStack = currentStackRow.getElementsByTagName("li");
+        let placedCardStack = currentStackRow.getElementsByTagName("li");
 
         replaceLastCard(placedCardStack);
     }
@@ -295,10 +295,10 @@ function handleDragStart(event){
 
 function initialiseDragCards() {
     let draggableCards = document.querySelectorAll(".draggable");
-draggableCards.forEach( card => {
-    card.draggable = true;
-    card.addEventListener("dragstart", handleDragStart);
-})
+    draggableCards.forEach( card => {
+        card.draggable = true;
+        card.addEventListener("dragstart", handleDragStart);
+    })
 }
 
 function shortenCards(ul){
@@ -367,6 +367,9 @@ function winGameChanges() {
     let closeBtn = document.querySelector(".close-win-popup-btn");
     closeBtn.addEventListener("click", closeWinPopUp)
 
+    let playAgainBtn = document.querySelector(".play-again-btn")
+    playAgainBtn.addEventListener("click", handlePlayAgain)
+
 }
 
 function closeWinPopUp() {
@@ -378,17 +381,42 @@ function handlePlayAgain() {
     closeWinPopUp()
 
     let finalCardStackDiv = document.querySelector(".final-card-stacks");
-    console.log(finalCardStackDiv)
+
     let finalCardStack = finalCardStackDiv.querySelectorAll(".dropZoneStack");
 
-    finalCardStack.forEach( finalStack => {
 
-        while (finalStack.length !== 1) {
-            finalStack.removeChild();
+    finalCardStack.forEach( finalStack => {
+        let placeholderCard = finalStack.firstElementChild
+        console.log(placeholderCard)
+        if (placeholderCard.classList.contains("hidden-Card")) {
+            placeholderCard.classList.remove("hidden-Card")
+        }
+        while (finalStack.childElementCount !== 1) {
+            finalStack.removeChild(finalStack.lastChild);
         }
     })
 
-    initialiseCards();
+    let nonFlippedStack = document.querySelector("#non-flipped-stack")
+    let nonFlippedPlaceHolder = nonFlippedStack.firstElementChild
+
+    if (nonFlippedPlaceHolder.classList.contains("placeholder-card")) {
+        nonFlippedStack.removeChild(nonFlippedPlaceHolder)
+    }
+
+    let workingCardUl = document.querySelector(".working-card-space")
+
+    let workingCardStacks = workingCardUl.querySelectorAll("li")
+    
+    workingCardStacks.forEach( workingStack => {
+        while (workingStack.childElementCount !== 1) {
+            workingStack.removeChild(workingStack.lastChild);
+        }
+    })
+
+
+    cardStacks = []
+
+    initialiseCards(cardStacks);
 
     placeCardsOnTable();
 
@@ -396,7 +424,7 @@ function handlePlayAgain() {
 }
 
 
-initialiseCards();
+initialiseCards(cardStacks);
 
 placeCardsOnTable();
 
@@ -418,8 +446,6 @@ var selectedCardSuitValue;
 var currentDraggingCard;
 
 var visibleCards;
-
-
 
 let dropZoneStacks = document.querySelectorAll(".dropZoneStack");
 
